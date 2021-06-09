@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-    before_action :get_team
+  before_action :get_team
 
   def index
   end
