@@ -1,25 +1,24 @@
 class ClientsController < AuthenticatedController
+  before_action :set_team
+
   def index
-    @team = Team.find params[:team_id]
     @clients = @team.clients
   end
 
   def new
-    @team = Team.find params[:team_id]
     @client = Client.new
   end
 
   def show
-    @client = Client.find(params[:id])
+    @client = Client.find params[:id]
   end
 
   def create
-    @team = Team.find params[:team_id]
     @client = Client.new client_params
     @client.user_id = current_user.id
 
     if @client.save
-      format.html { redirect_to @client, notice: 'Client was successfully created.' }
+      redirect_to @client, notice: 'Client was successfully created.'
     else
       render :new
     end
@@ -32,6 +31,10 @@ class ClientsController < AuthenticatedController
   end
 
   private
+
+  def set_team
+    @team = Team.find params[:team_id]
+  end
 
   def client_params
     params.require(:client).permit(:name, :provider, :business_type)

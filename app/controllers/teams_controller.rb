@@ -5,7 +5,7 @@ class TeamsController < AuthenticatedController
   end
 
   def show
-    @team = Team.find(params[:id])
+    @team = Team.find params[:id]
   end
 
   def edit
@@ -18,6 +18,6 @@ class TeamsController < AuthenticatedController
   end
 
   def get_team
-    @team = Team.find(params[:id])
+    @team = Team.find params[:id]
   end
 end
