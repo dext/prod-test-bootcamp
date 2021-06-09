@@ -6,5 +6,6 @@ class User < ApplicationRecord
 
   has_many :client, dependent: :destroy
 
-  has_and_belongs_to_many :teams
+  has_many :team_memberships, dependent: :destroy
+  has_many :teams, through: :team_memberships
 end
