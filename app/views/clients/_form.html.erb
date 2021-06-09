@@ -1,0 +1,26 @@
+<%= form_with :model @client do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+    <% client.errors.full_messages_for(:name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :provider %><br>
+    <%= form.text_field :provider %>
+    <% client.errors.full_messages_for(:provider).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :business_type %><br>
+    <%= form.select :business_type, ["Partnership", "Sole Trader", "Limited Company"] %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
