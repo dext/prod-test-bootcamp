@@ -1,4 +1,4 @@
-class TeamsController < ApplicationController
+class TeamsController < AuthenticatedController
   before_action :get_team
 
   def index

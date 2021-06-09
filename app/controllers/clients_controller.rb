@@ -1,4 +1,4 @@
-class ClientsController < ApplicationController
+class ClientsController < AuthenticatedController
   def index
     @team = Team.find params[:team_id]
     @clients = @team.clients
