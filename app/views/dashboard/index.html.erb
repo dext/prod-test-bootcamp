@@ -2,26 +2,23 @@
 
 <% if user_signed_in? %>
 
-  <%= link_to('Edit registration', edit_user_registration_path) %>
-  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+  <%= link_to 'Edit registration', edit_user_registration_path %>
+  <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
 
   <h3>Your Teams</h3>
-    <li>
-        <% @user = User.find(current_user.id) %>
-        <% @teams = @user.teams %>
 
-        <% @teams.each do |t| %>
-            <li>
-                <a href="/teams/<%= t.id %>">
-                    <%= t.name %>
-                </a>
-            </li>
-        <% end %>
-    </li>
+  <ul>
+    <% current_user.teams.each do |team| %>
+      <li>
+        <%= link_to team.name, team_path(team) %>
+      </li>
+    <% end %>
+  </ul>
+
 <% else %>
 
-  <%= link_to('Register', new_user_registration_path)  %>
-  <%= link_to('Login', new_user_session_path)  %>
+  <%= link_to 'Register', new_user_registration_path  %>
+  <%= link_to 'Login', new_user_session_path  %>
 
 <% end %>
 

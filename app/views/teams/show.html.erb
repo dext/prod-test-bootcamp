@@ -1,6 +1,7 @@
 <h1>Teams</h1>
 <ul>
-    <li><%= link_to('My Clients', team_clients_path) %></li>
-    <li><%= link_to('Add Client', new_team_client_path) %></li>
-    <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+  <li><%= link_to 'My Clients', team_clients_path(@team) %></li>
+  <li><%= link_to 'Add Client', new_team_client_path(@team) %></li>
+
+  <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
 </ul>

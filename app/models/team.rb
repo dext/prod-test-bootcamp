@@ -3,5 +3,5 @@ class Team < ApplicationRecord
   validates :location, presence: true
 
   has_and_belongs_to_many :users
-  has_many :client
+  has_many :clients
 end

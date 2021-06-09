@@ -1,9 +1,11 @@
 class ClientsController < ApplicationController
   def index
-    @clients = Client.all
+    @team = Team.find params[:team_id]
+    @clients = @team.clients
   end
 
   def new
+    @team = Team.find params[:team_id]
     @client = Client.new
   end
 
@@ -12,7 +14,8 @@ class ClientsController < ApplicationController
   end
 
   def create
-    @client = Client.new(client_params)
+    @team = Team.find params[:team_id]
+    @client = Client.new client_params
     @client.user_id = current_user.id
 
     if @client.save
@@ -29,7 +32,8 @@ class ClientsController < ApplicationController
   end
 
   private
-    def client_params
-      params.require(:client).permit(:name, :provider, :business_type)
-    end
+
+  def client_params
+    params.require(:client).permit(:name, :provider, :business_type)
+  end
 end
