@@ -2,14 +2,10 @@
 
 # This class interacts with Companies House to fetch info about a company.
 class CompaniesHouse
-  def initialize
-    super
-
-    @base_url = 'https://api.company-information.service.gov.uk'
-    @officers_uri = '/company/{company_number}/officers'
-    @profile_uri = '/company/{company_number}'
-    @search_companies_uri = '/search/companies'
-  end
+  @base_url = 'https://api.company-information.service.gov.uk'
+  @officers_uri = '/company/{company_number}/officers'
+  @profile_uri = '/company/{company_number}'
+  @search_companies_uri = '/search/companies'
 
   def get_company_profile(api_key, company_number)
     get_json_response api_key, @profile_uri, company_number: company_number
@@ -29,8 +25,8 @@ class CompaniesHouse
 
   private
 
-  def get_json_response(api_key, uri, replacements = nil, params = nil)
-    replacements&.each do |search, replace|
+  def get_json_response(api_key, uri, uri_replacements = nil, params = nil)
+    uri_replacements&.each do |search, replace|
       uri = uri.sub "{#{search}}", replace
     end
 
