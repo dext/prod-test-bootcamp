@@ -7,7 +7,12 @@ Rails.application.routes.draw do
 
   resources :teams do
     resources :clients
+
+    get 'integrations/companies_house/profile',
+        to: 'integrations/companies_house#company_profile',
+        as: 'companies_house_profile'
   end
+
 
   root to: 'home#index'
 end
