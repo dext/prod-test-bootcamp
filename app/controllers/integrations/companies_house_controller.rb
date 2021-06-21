@@ -7,14 +7,16 @@ module Integrations
   # This controller is responsible for communicating with the
   # Companies House API to fetch details about a company.
   class CompaniesHouseController < AuthenticatedController
-    before_action :set_team
+    before_action :set_team, :set_connection
 
     def company_profile
+      return head(:forbidden) if @connection.nil?
+
       @companies_house = CompaniesHouse.new
 
       render json: @companies_house.get_company_profile(
         @connection.connection_details,
-        params[:company_number]
+        params.require(:company_number)
       )
     end
 
@@ -22,15 +24,10 @@ module Integrations
 
     def set_team
       @team = Team.find params[:team_id]
-      @connection = @team.team_connections.where(:name, 'companies_house').first
+    end
 
-      if @connection.nil?
-        head :forbidden
-
-        render json: {
-          message: 'Forbidden'
-        }
-      end
+    def set_connection
+      @connection = @team.team_connections.where(name: 'companies_house').first
     end
   end
 end
