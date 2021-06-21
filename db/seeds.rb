@@ -21,5 +21,5 @@ charles = Client.create! name: 'Charles', user_id: user.id, team_id: a_team.id, 
 cyclops = Client.create! name: 'Cyclops', user_id: user.id, team_id: b_team.id, provider: 'Provider', business_type: 'partnership'
 jubilee = Client.create! name: 'Jubilee', user_id: user.id, team_id: b_team.id, provider: 'Provider', business_type: 'partnership'
 
-TeamMembership.create! user_id: user.id, team_id: a_team.id, role: 'admin'
-TeamMembership.create! user_id: user.id, team_id: b_team.id, role: 'admin'
+TeamMembership.create! user_id: user.id, team_id: a_team.id, role: 'admin', staff_role: 'junior'
+TeamMembership.create! user_id: user.id, team_id: b_team.id, role: 'admin', staff_role: 'senior'

@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2021_06_21_085422) do
     t.bigint "user_id", null: false
     t.bigint "team_id", null: false
     t.string "role", null: false
+    t.string "staff_role", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["team_id"], name: "index_team_memberships_on_team_id"
